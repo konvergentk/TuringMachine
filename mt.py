@@ -18,28 +18,12 @@ def findCommand(q, cell, com, alf):
 
 def executeCommand(com, q, tape, cell_num):
     flag = True
-    if len(com) == 6:
-        if com[2] == ">":
-            q = int(com[3])
-            tape[cell_num] = com[4]
-            cell_num += 1 if com[5] == "R" else -1
-        else:
-            flag = False
+    if com[2] == ">":
+        q = int(com[3])
+        tape[cell_num] = com[4]
+        cell_num += 1 if com[5] == "R" else -1
     else:
-        if com[3] == ">":
-            if (com[6] == "R") or (com[6] == "L"):
-                q = int(com[4])
-                tape[cell_num] = com[5]
-                cell_num += 1 if com[6] == "R" else -1
-            else:
-                q = int(str(com[4]) + str(com[5]))
-                tape[cell_num] = com[6]
-                cell_num += 1 if com[7] == "R" else -1
-        else:
-            q = int(str(com[3]) + str(com[4]))
-            tape[cell_num] = com[5]
-            cell_num += 1 if com[6] == "R" else -1
-
+        flag = False
     return q, tape, cell_num, flag
 
 def writeRes(resFile, tape, cell_num, q, iter, com, back_tape, back_cell_num):
